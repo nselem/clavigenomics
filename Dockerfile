@@ -30,6 +30,11 @@ RUN cd vim && ./configure && make VIMRUNTIMEDIR=/usr/share/vim/vim74 && make ins
 ## CORASON
 RUN git clone https://github.com/nselem/clavigenomics
 RUN mkdir /opt/CLAVIGENOMICS
+## Installing perl module
+RUN curl -L http://cpanmin.us | perl - App::cpanminus
+RUN cpanm SVG
+RUN cpanm Bio::SeqIO;
+RUN cpanm Bio::SeqFeature::Generic;
 
 ######### PATHS ENVIRONMENT
 ENV PATH /opt/blast/bin:$PATH:/opt/muscle:/opt/Gblocks:/opt/quicktree/quicktree_1.1/bin:/root/EvoDivMet/CORASON:/opt/fasttree
