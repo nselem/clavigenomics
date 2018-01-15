@@ -23,7 +23,7 @@ sub genomeDistribution{
 	#print "Total of genomes $genomeNumber\n";
 
          # creo un aray para cada gen en el reference core
-	for (my $i=1;$i<=558;$i++){
+	for (my $i=1;$i<=590;$i++){
 			$HASH{$i}=();
 			}
 
@@ -47,14 +47,14 @@ sub genomeDistribution{
 	#para cada gen del 1 al 590
  	#Contar el tamaño de su array si es igual que genomeNumber
 	#Ponerlo en la lista de pseudocore
-	for (my $i=1;$i<=558;$i++){
-#			print "Getting elements on pseudocore\n";
-	#		print "The size of $i is \n";
+	for (my $i=1;$i<=590;$i++){
+			print "Getting elements on pseudocore\n";
 			if(-exists $HASH{$i}){
 				my $isize=scalar@{$HASH{$i}};
+#				print "The size of $i is $isize\n";
 				if($isize==$genomeNumber){
 				#		print "$i\t$isize\t@{$HASH{$i}}}\n";
-					open(FILE,">$i") or die "Coudnt open $i file $!\n";
+					open(FILE,">$i") or die "$!\n";
 					foreach my $seq (@{$HASH{$i}}){
 						$seq=~s/\_/\n/;
 						print FILE ">$seq\n";
@@ -67,20 +67,14 @@ sub genomeDistribution{
 				}
 			}
 		}
-		print("echo Concatenador.pl @keys");
-#		system("echo Concatenador.pl @keys");
+		system("Concatenador.pl @keys");
 
-		my $seqio_obj_in = Bio::SeqIO->new(-file => "SalidaConcatenada.txt",  -format => "fasta" );
-		open(FILE,">RightNames.txt") or die "Coudnt open NamesFile file $!\n";
-		while (my $inseq= $seqio_obj_in->next_seq ){
-			my $id= $inseq->display_id;
-			my $seq= $inseq->seq();
-	#		print"Id is #$id#\n";
-			my $new=$refIDS->{$id};
-			print"Id is #$new#$seq\n";
-	         	print FILE ">$new\n$seq\n"; 
-			}
-		close FILE;
+ #open my $zcat, 'zcat seq.fastq.gz |' or die $!;
+ # my $in=Bio::SeqIO->new(-fh=>$zcat,     -format=>'fastq');
+#  my $out=Bio::SeqIO->new(-file=>'>seq.fasta',                          -format=>'fasta');
+ # while (my $seq=$in->next_seq) {
+  #    $out->write_seq($seq)
+  #}	
 }
 ############################
 
@@ -95,7 +89,7 @@ sub readFile{
 		$st[1]=~s/\;//g;
 		$st[1]=~s/\|//g;
 		$st[1]=~s/ /\_/g;
-		print "$st[0]->$st[1]\n";
+	#	print "$st[0]->$st[1]\n";
 		$hash{$st[0]}=$st[1];
 	}
 	return %hash;

@@ -57,7 +57,7 @@ print "dir2 $dir2\n";
 #################################################################################################
 #################################################################
 ######  Main program
-@keys=@ARGVS;        #######Obtiene los nombres de los organismos (org1, org2, etc) Deben ser iguales en todos los archivos
+@keys=@ARGV;        #######Obtiene los nombres de los organismos (org1, org2, etc) Deben ser iguales en todos los archivos
 %HASH=CreateHash($verbose,@keys);     ####### Crea un HAsh que contendra las secuencias concatenadas
 @files=GetFileNames($verbose,$dir2);   #####Abre el directorio y obtiene el nombre de todos los archivos a concatenar
 concatenar($verbose,$dir2,\@keys,\@files,\%HASH); 
@@ -202,7 +202,7 @@ foreach my $fastaTotal (@{$reffiles}){  ## Para cada archivo con nombre numerico
 		foreach my $cadena (@cadenas){	# Para cada cadena
 			my $number=$cadena;
 			my $subcadena;
-			if($number=~/\d*\_(\d*\.\d*)/){
+			if($number=~/(\d*\.\d*)/){
 				$subcadena=$1;
 			}
 
@@ -216,7 +216,7 @@ foreach my $fastaTotal (@{$reffiles}){  ## Para cada archivo con nombre numerico
 
 				if($verbose){print "STRING $cadena \n" ;}
 				my $secuencia=$cadena;## Obtengo la secuencia
-				$secuencia=~s/\d*\_\d*\.\d*//;
+				$secuencia=~s/\d*\.\d*//;
 				$refHASH->{$key}=$refHASH->{$key}.$secuencia;## Y la concateno al hash 
 	#			print "key $key \nHAsh $refHASH->{$key}  \n";
 	#			####     En el lugar de su clave correspondiente
