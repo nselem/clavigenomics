@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use lib qw(/usr/local/lib/perl5/site_perl/5.20.3/);
 use Bio::SeqIO;
 
 my $file="/usr/src/CLAVIGENOMICS/lista";

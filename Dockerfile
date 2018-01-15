@@ -35,9 +35,10 @@ RUN curl -L http://cpanmin.us | perl - App::cpanminus
 RUN cpanm SVG
 RUN cpanm Bio::SeqIO;
 RUN cpanm Bio::SeqFeature::Generic;
-
+RUN chmod -R 777 /root/clavigenomics/Pseudocore
 ######### PATHS ENVIRONMENT
 ENV PATH /opt/blast/bin:$PATH:/opt/muscle:/opt/Gblocks:/opt/quicktree/quicktree_1.1/bin:/root/clavigenomics/Pseudocore:/opt/fasttree
+ENV PERL5LIB /usr/local/lib/perl5/site_perl/5.20.3/
 WORKDIR /usr/src/CLAVIGENOMICS
 
 ## Como paso variables ?
