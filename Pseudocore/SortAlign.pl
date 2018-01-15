@@ -1,3 +1,5 @@
+#!/usr/bin/perl
+
 my $nombre=$ARGV[0];
 
 open(FILE2,$nombre)or die "Couldnt open $nombre $!\n";
@@ -5,26 +7,18 @@ open(FILE2,$nombre)or die "Couldnt open $nombre $!\n";
 #print("Se abrio el archivo $nombre\n");
 
 my @content=<FILE2>;
-
 my $headerFasta;
-
 my $clust;
-
 my %hashFastaH;
 
-
 foreach my $line (@content){
-
 	#print" $line";
-
 	if($line =~ />/){
-                                chomp $line;
-                                $headerFasta=$line;
-                                $clust=$line;
-
-			chomp $clust;
-                        
-$clust=~s/>\d*_//g; #Obtengo el indicador del cluster
+                       chomp $line;
+                       $headerFasta=$line;
+                       $clust=$line;
+		       chomp $clust;
+		       $clust=~s/>//g; #Obtengo el indicador del cluster
                                 $hashFastaH{$clust}=$headerFasta."\n";;
                         }
                         else{

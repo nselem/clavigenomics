@@ -57,7 +57,7 @@ print "dir2 $dir2\n";
 #################################################################################################
 #################################################################
 ######  Main program
-@keys=GetKeys($dir2);        #######Obtiene los nombres de los organismos (org1, org2, etc) Deben ser iguales en todos los archivos
+@keys=@ARGVS;        #######Obtiene los nombres de los organismos (org1, org2, etc) Deben ser iguales en todos los archivos
 %HASH=CreateHash($verbose,@keys);     ####### Crea un HAsh que contendra las secuencias concatenadas
 @files=GetFileNames($verbose,$dir2);   #####Abre el directorio y obtiene el nombre de todos los archivos a concatenar
 concatenar($verbose,$dir2,\@keys,\@files,\%HASH); 

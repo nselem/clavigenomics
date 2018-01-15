@@ -37,7 +37,7 @@ RUN cpanm Bio::SeqIO;
 RUN cpanm Bio::SeqFeature::Generic;
 
 ######### PATHS ENVIRONMENT
-ENV PATH /opt/blast/bin:$PATH:/opt/muscle:/opt/Gblocks:/opt/quicktree/quicktree_1.1/bin:/root/EvoDivMet/CORASON:/opt/fasttree
+ENV PATH /opt/blast/bin:$PATH:/opt/muscle:/opt/Gblocks:/opt/quicktree/quicktree_1.1/bin:/root/clavigenomics/Pseudocore:/opt/fasttree
 ## Moving to myapp directory
 RUN mkdir /usr/src/CLAVIGENOMICS
 WORKDIR /usr/src/CLAVIGENOMICS
