@@ -1,3 +1,6 @@
+Download it for the docker hub  
+`docker pull nselem/clavigenomic`  
+
 `docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS clavigenomics /bin/bash`
 
 To run a test  
