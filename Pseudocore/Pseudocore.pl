@@ -68,16 +68,16 @@ sub genomeDistribution{
 			}
 		}
 		print("echo Concatenador.pl @keys");
-#		system("echo Concatenador.pl @keys");
+		system("Concatenador.pl @keys");
 
-		my $seqio_obj_in = Bio::SeqIO->new(-file => "SalidaConcatenada.txt",  -format => "fasta" );
-		open(FILE,">RightNames.txt") or die "Coudnt open NamesFile file $!\n";
+		my $seqio_obj_in = Bio::SeqIO->new(-file => "/usr/src/CLAVIGENOMICS/SalidaConcatenada.txt",  -format => "fasta" );
+		open(FILE,">/usr/src/CLAVIGENOMICS/RightNames.txt") or die "Coudnt open NamesFile file $!\n";
 		while (my $inseq= $seqio_obj_in->next_seq ){
 			my $id= $inseq->display_id;
 			my $seq= $inseq->seq();
 	#		print"Id is #$id#\n";
 			my $new=$refIDS->{$id};
-			print"Id is #$new#$seq\n";
+	#		print"Id is #$new#$seq\n";
 	         	print FILE ">$new\n$seq\n"; 
 			}
 		close FILE;
