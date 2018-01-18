@@ -1,4 +1,4 @@
-Download it for the docker hub   
+Download it for the docker hub     
 `docker pull nselem/clavigenomic`  
   
 Run the docker images  
