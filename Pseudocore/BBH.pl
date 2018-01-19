@@ -10,14 +10,14 @@ no warnings 'experimental::smartmatch';
 #Variables
 my $verbose;
 my $e=0.001;
-my $file1=$ARGV[0]; ## Fasta file with some genes
-my $file2=$ARGV[1]; ## Fasta file with others genes where to look for BBH
+my $file1=$ARGV[0]; ## Fasta file with some genes The reference Core
+my $file2=$ARGV[1]; ## Fasta file with others genes where to look for BBH (THe genome)
 print "\nLooking for BBH between $file1 on set $file2\n ";
 # first  blast p from 1vs2
 `makeblastdb -in $file2 -dbtype prot -out $file2\.db`;
-`blastp -db $file2\.db -query $file1 -outfmt 6 -evalue $e -num_threads 4 -out $file1\_vs\_$file2`;
+`blastp -db $file2\.db -query /root/clavigenomics/Pseudocore/$file1 -outfmt 6 -evalue $e -num_threads 4 -out $file1\_vs\_$file2`;
 #second blastp 2vs1
-`makeblastdb -in $file1 -dbtype prot -out $file1\.db`;
+`makeblastdb -in /root/clavigenomics/Pseudocore/$file1 -dbtype prot -out $file1\.db`;
 `blastp -db $file1\.db -query $file2 -outfmt 6 -evalue $e -num_threads 4 -out $file2\_vs\_$file1`;
 
 my $inputblast1vs2="$file1\_vs\_$file2";
@@ -91,12 +91,15 @@ sub printEvoFormat{
 	my $refBBH=shift;
 	my $refFASTA=shift;
 	my $file=shift;
-	open (FILE,">$file2\_Central") or die "Unable to open file $!\n";
+	my $FinalName;
+
+	open (FILE,">$file2\.Central") or die "Unable to open file $!\n";
+	print "Este es >$file2\.Central\n";
 	for my $query (sort {$a<=>$b} keys %$refBBH){
 		my $hit=$refBBH->{$query};
 		my $key=">".$hit;
 #		my $key=$hit;
-		print "key $key\n";
+#		print "key $key\n";
 		$hit=~s/fig\|//;
 		$hit=~s/\.peg\.\d*$//;
 		my $seq=$refFASTA->{$key};
@@ -105,9 +108,14 @@ sub printEvoFormat{
 		#$query=~s/$sp[$#sp]//;
 
 		print FILE">$query"."_"."$hit\n";
+		if($hit ne ""){
+			#print "$FinalName\n";
+			#$FinalName=$hit;
+			}
 		print FILE"$seq\n\n";
 		}
-
+	close FILE;
+	system ("mv $file2\.Central $FinalName\.Central");
 	}
 
 
@@ -156,7 +164,7 @@ sub ListBidirectionalBestHits(){
 			if($hit and( exists $RefBH2vs1->{$hit})) {
 				if(exists $RefBH2vs1->{$hit}[1] and $gen eq $RefBH2vs1->{$hit}[1]) {
 					$RefBiBestHits->{$gen}=$hit;
-					print " BBH $gen <=> $hit , $RefBiBestHits->{$gen}=$hit\n";
+					# print " BBH $gen <=> $hit , $RefBiBestHits->{$gen}=$hit\n";
 					$count++;
 					}
 				}
