@@ -15,6 +15,8 @@ my %IDS=readFile($file);
 ## input a gen number
 ## output A hash of arrays with all the Genome Ids where is present.
 genomeDistribution(\%IDS);
+system("FastTree SalidaConcatenada.txt > Salida.tre");
+system("rm [0-9]*");
 
 sub genomeDistribution{
 	my $refIDS=shift;
