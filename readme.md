@@ -11,6 +11,7 @@
 2. Execute the Pseudocore script  
 `Pseudocore.pl`  
 
+
 ## To Create the blast file for a set of genomes .faa   
   
 `ls *faa | while read line; do perl BBH.pl 558ParaCORE $line; done`  
