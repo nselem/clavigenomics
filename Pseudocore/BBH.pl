@@ -110,7 +110,7 @@ sub printEvoFormat{
 		print FILE">$query"."_"."$hit\n";
 		if($hit ne ""){
 			#print "$FinalName\n";
-			#$FinalName=$hit;
+			$FinalName=$hit;
 			}
 		print FILE"$seq\n\n";
 		}
