@@ -17,4 +17,4 @@
 `ls *faa | while read line; do BBH.pl 558ParaCORE $line; done`  
 
 To change the core genes reference file:  
-`mv <referencefile> /root/clavigenomics/pseudocore/.`  
+`mv <referencefile> /root/clavigenomics/Pseudocore/.`  
