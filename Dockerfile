@@ -26,6 +26,11 @@ RUN cd ~
 RUN git clone https://github.com/vim/vim.git
 RUN cd vim && ./configure && make VIMRUNTIMEDIR=/usr/share/vim/vim74 && make install
 
+##___________________________________________________
+#### MCL  
+RUN wget -O /opt/mcl-14-137.tar.gz https://micans.org/mcl/src/mcl-14-137.tar.gz
+RUN mkdir /opt/mcl && tar -C /opt/mcl -xzvf /opt/mcl-14-137.tar.gz && cd /opt/mcl/mcl-14-137 &&  ./configure --prefix=$HOME/local && make install
+
 #_________________________________________________________________________________________________
 ## Clavigenomics
 RUN git clone https://github.com/nselem/clavigenomics
@@ -37,10 +42,6 @@ RUN cpanm Bio::SeqIO;
 RUN cpanm Bio::SeqFeature::Generic;
 RUN chmod -R 777 /root/clavigenomics/Pseudocore
 
-##___________________________________________________
-#### MCL  
-RUN wget -O /opt/mcl-14-137.tar.gz https://micans.org/mcl/src/mcl-14-137.tar.gz
-RUN mkdir /opt/mcl && tar -C /opt/mcl -xzvf /opt/mcl-14-137.tar.gz && cd /opt/mcl/mcl-14-137 &&  ./configure --prefix=$HOME/local && make install
 
 
 ######### PATHS ENVIRONMENT
