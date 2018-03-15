@@ -27,7 +27,7 @@ RUN git clone https://github.com/vim/vim.git
 RUN cd vim && ./configure && make VIMRUNTIMEDIR=/usr/share/vim/vim74 && make install
 
 #_________________________________________________________________________________________________
-## CORASON
+## Clavigenomics
 RUN git clone https://github.com/nselem/clavigenomics
 RUN mkdir /opt/CLAVIGENOMICS
 ## Installing perl module
@@ -36,6 +36,13 @@ RUN cpanm SVG
 RUN cpanm Bio::SeqIO;
 RUN cpanm Bio::SeqFeature::Generic;
 RUN chmod -R 777 /root/clavigenomics/Pseudocore
+
+##___________________________________________________
+#### MCL  
+RUN wget -O /opt/mcl-14-137.tar.gz https://micans.org/mcl/src/mcl-14-137.tar.gz
+RUN mkdir /opt/mcl && tar -C /opt/mcl -xzvf /opt/mcl-14-137.tar.gz && cd /opt/mcl/mcl-14-137 &&  ./configure --prefix=$HOME/local && make install
+
+
 ######### PATHS ENVIRONMENT
 ENV PATH /opt/blast/bin:$PATH:/opt/muscle:/opt/Gblocks:/opt/quicktree/quicktree_1.1/bin:/root/clavigenomics/Pseudocore:/opt/fasttree
 ENV PERL5LIB /usr/local/lib/perl5/site_perl/5.20.3/
