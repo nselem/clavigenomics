@@ -1,8 +1,7 @@
 --mcl_path /root/local/bin/mcl
---blast_file /usr/src/CLAVIGENOMICS/temp.BLAST
---working_directory /usr/src/CLAVIGENOMICS/salida 
+--blast_file /root/clavigenomics/exampleFO/temp.BLAST
+--working_directory /root/clavigenomics/exampleFO/salida 
 --project_name pensando
---single_genome_fasta  /usr/src/CLAVIGENOMICS/6666666.268671.faa
---single_genome_fasta  /usr/src/CLAVIGENOMICS/6666666.268674.faa
---single_genome_fasta  /usr/src/CLAVIGENOMICS/6666666.268675.faa
-
+--single_genome_fasta  /root/clavigenomics/exampleFO/6666666.268671.faa
+--single_genome_fasta  /root/clavigenomics/exampleFO/6666666.268674.faa
+--single_genome_fasta  /root/clavigenomics/exampleFO/6666666.268675.faa

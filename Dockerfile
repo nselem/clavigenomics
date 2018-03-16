@@ -45,7 +45,7 @@ RUN chmod -R 777 /root/clavigenomics/Pseudocore
 
 
 ######### PATHS ENVIRONMENT
-ENV PATH /opt/blast/bin:$PATH:/opt/muscle:/opt/Gblocks:/opt/quicktree/quicktree_1.1/bin:/root/clavigenomics/Pseudocore:/opt/fasttree
+ENV PATH /opt/blast/bin:$PATH:/opt/muscle:/opt/Gblocks:/opt/quicktree/quicktree_1.1/bin:/root/clavigenomics/Pseudocore:/opt/fasttree:/root/clavigenomics/FastOrtho/src/
 ENV PERL5LIB /usr/local/lib/perl5/site_perl/5.20.3/
 WORKDIR /usr/src/CLAVIGENOMICS
 
