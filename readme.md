@@ -18,3 +18,6 @@
 
 To change the core genes reference file:  
 `mv <referencefile> /root/clavigenomics/Pseudocore/.`  
+  
+## FastOrtho.   
+`FastOrtho --option_file options.file`.  
