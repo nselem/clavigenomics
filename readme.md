@@ -21,3 +21,8 @@ To change the core genes reference file:  
   
 ## FastOrtho.   
 `FastOrtho --option_file options.file`.  
+1) have a blast file ivs j. blast foralli,j  
+select some i,j. 
+2)concat this files. 
+3) give this as an input. 
+return fast ortho families, maybe with the name of the most recurrent   
