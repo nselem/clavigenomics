@@ -20,9 +20,13 @@ To change the core genes reference file:  
 `mv <referencefile> /root/clavigenomics/Pseudocore/.`  
   
 ## FastOrtho.   
-`FastOrtho --option_file options.file`.  
+`FastOrtho --option_file options.file`
 1) have a blast file ivs j. blast foralli,j  
 select some i,j. 
 2)concat this files. 
 3) give this as an input. 
 return fast ortho families, maybe with the name of the most recurrent   
+
+## Para las familias en el n% de genomas    
+ `cp /root/clavigenomics/exampleFO/* .`        
+`makeFamiliesN.pl 80 6666666.268671 6666666.268675`       
