@@ -27,6 +27,6 @@ select some i,j.
 3) give this as an input. 
 return fast ortho families, maybe with the name of the most recurrent   
 
-Para las familias en el n% de genomas
- `cp /root/clavigenomics/exampleFO/* .`    
-`makeFamiliesN.pl 80 6666666.268671 6666666.268675`   
+## Para las familias en el n% de genomas    
+ `cp /root/clavigenomics/exampleFO/* .`        
+`makeFamiliesN.pl 80 6666666.268671 6666666.268675`       
