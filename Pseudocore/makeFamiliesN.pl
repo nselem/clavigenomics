@@ -9,10 +9,24 @@ use warnings;
 # Output Archivo usr/src/CLAVIGENOMICS/salida/temp.end de fast Ortho
 # Requiere archivos fasta y archivos .blast GivsGj.blast para cada i,j seleccionados 
 #
-
-my $number=shift @ARGV;
-my @RastIds=@ARGV;
+#######################3 Read variables
 my $path="/usr/src/CLAVIGENOMICS";
+my $inputdir=shift @ARGV;
+my $number=shift @ARGV;
+my $fileIds= shift @ARGV;
+my @RastIds;
+
+print "input dir $inputdir\n";
+print "number $number\n";
+print "fileIDs $fileIds\n";
+
+open (FILE,"$fileIds") or die "No pude abrir $fileIds\n$!";
+foreach my $id(<FILE>){
+	chomp $id;
+	$id=~s/\r//g;
+  	push(@RastIds,$id);
+	}
+
 ##############################################################################
 ### Revisando inputs  
 ################################################################################
@@ -78,7 +92,6 @@ sub Select_n_families{
 
 		#print "Familia:$1, Taxa:$2\n"; ## Finding most common name
                 my @ids=split(" ",$st[1]);	
-		open (TEMP,">$path/salida/temp.ids") or die "";
 		my @functions;
 		foreach my $id(@ids){
 			$id=~s/(fig\|\d*\.\d*\.\w*\.\d*)\(\d*\.\d*\)/$1/;
