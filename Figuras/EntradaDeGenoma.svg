@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (3ce5693, 2018-03-11)"
+   sodipodi:docname="EntradaDeGenoma.svg">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path834"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.8) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path837"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-3"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path834-6"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-3-9"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path834-6-2"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-3-0"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path834-6-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-3-07"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path834-6-8"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-3-6"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path834-6-6"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart-3-6-9"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path834-6-6-1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="462.96665"
+     inkscape:cy="229.32363"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1301"
+     inkscape:window-height="744"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-87)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="20.377735"
+       y="98.95945"
+       id="text2004-5"><tspan
+         sodipodi:role="line"
+         id="tspan2002-3"
+         x="20.377735"
+         y="98.95945"
+         style="stroke-width:0.26458332">Familia de proteinas en comun en un porcentaje </tspan><tspan
+         sodipodi:role="line"
+         x="20.377735"
+         y="112.18861"
+         style="stroke-width:0.26458332"
+         id="tspan5731">de genomas  (  No necesariamente core) (2)</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3135"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3137"><rect
+           id="rect3139"
+           width="5.7142859"
+           height="148.57143"
+           x="545.71429"
+           y="462.27225" /></flowRegion><flowPara
+         id="flowPara3141"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="161.96533"
+       y="202.92113"
+       id="text4917"><tspan
+         sodipodi:role="line"
+         id="tspan4915"
+         x="161.96533"
+         y="212.2849"
+         style="stroke-width:0.26458332" /></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8638"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion8640"><rect
+           id="rect8642"
+           width="72.73098"
+           height="64.649765"
+           x="1080.8633"
+           y="496.71594" /></flowRegion><flowPara
+         id="flowPara8644"></flowPara></flowRoot>    <path
+       sodipodi:type="star"
+       style="fill:#ff2a2a;stroke-width:0.90499997;stroke-miterlimit:2.4000001;stroke-dasharray:none"
+       id="path1973-5-1-7"
+       sodipodi:sides="4"
+       sodipodi:cx="38.553574"
+       sodipodi:cy="202.50597"
+       sodipodi:r1="20.036304"
+       sodipodi:r2="10.845019"
+       sodipodi:arg1="0.94616093"
+       sodipodi:arg2="1.7315591"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 50.270836,218.75894 -27.97024,-4.53571 4.535716,-27.97024 27.970239,4.53571 z"
+       transform="matrix(4.5068943,0,0,1.1885254,-89.846164,-91.320987)" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot14-2-2-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-74.209167,144.48159)"><flowRegion
+         id="flowRegion16-37-7-6"><rect
+           id="rect18-5-2-5"
+           width="872.19153"
+           height="417.1008"
+           x="418.57144"
+           y="130.84366" /></flowRegion><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara9132">Cada familia un hiperlink a una página que despliegue </flowPara><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara9223">1) una lista con los RAST id,</flowPara><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara9219">Nombre del organismo -&gt; RastId </flowPara><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara9221">Cada RastId con un hiperlink a la secuencia</flowPara><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara9225" /><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara9217">2) un boton tree que mande a hacer un arbol fasttree de la familia</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9136"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion9138"><rect
+           id="rect9140"
+           width="14.285714"
+           height="174.28572"
+           x="1082.8572"
+           y="765.12939" /></flowRegion><flowPara
+         id="flowPara9142"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9144"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion9146"><rect
+           id="rect9148"
+           width="562.85712"
+           height="668.57141"
+           x="1157.1428"
+           y="122.27223" /></flowRegion><flowPara
+         id="flowPara9150"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot14-2-2"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-100.6675,98.368493)"><flowRegion
+         id="flowRegion16-37-7"><rect
+           id="rect18-5-2"
+           width="523.62006"
+           height="142.81509"
+           x="418.57144"
+           y="130.84366" /></flowRegion><flowPara
+         id="flowPara20-9-2"
+         style="font-size:32px;text-align:center;text-anchor:middle">Lista de familias </flowPara><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara8636">cada una con RastIDs</flowPara><flowPara
+         id="flowPara22-22-61"
+         style="font-size:32px;text-align:center;text-anchor:middle" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot14-2-2-4"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-100.6675,98.368493)"><flowRegion
+         id="flowRegion16-37-7-8"><rect
+           id="rect18-5-2-1"
+           width="523.62006"
+           height="142.81509"
+           x="418.57144"
+           y="130.84366" /></flowRegion><flowPara
+         id="flowPara20-9-2-2"
+         style="font-size:32px;text-align:center;text-anchor:middle">Lista de familias </flowPara><flowPara
+         style="font-size:32px;text-align:center;text-anchor:middle"
+         id="flowPara8636-9">cada una con RastIDs</flowPara><flowPara
+         id="flowPara22-22-61-3"
+         style="font-size:32px;text-align:center;text-anchor:middle" /></flowRoot>  </g>
+</svg>

@@ -83,6 +83,8 @@ sub Select_n_families{
 
 	my $filename="$path/salida/temp.end";
 	open (SALIDA,">$path/salida/temp.n_familias") or die " No pude crear $path/salida/temp.n_familias$!\n";;
+	open (JASON,">$path/salida/temp.js") or die " No pude crear $path/salida/temp.js$!\n";;
+	print JASON "{\n";
 	open (FILE,"$filename") or die "No pude abrir el archivo $filename de fastortho en el directoriio salida\n";	
 	foreach my $line (<FILE>){
 		chomp $line;
@@ -97,23 +99,27 @@ sub Select_n_families{
 			$id=~s/(fig\|\d*\.\d*\.\w*\.\d*)\(\d*\.\d*\)/$1/;
 			my $func=$FuncHash->{$id};
 			push(@functions,$func);
-		#	print TEMP "$func\n";
 			}
-#		close TEMP;	
-#		system("cat $path/salida/temp.ids|sort -g|uniq -c>$path/salida/name");
-#		open (NOMBRE,"$path/salida/name") or die "";
-#		my $nombre=<NOMBRE>;	
-#		close NOMBRE;
-#		$nombre=system("head -n1 $path/salida/name|cut -f2");
-#		$nombre=~s/\r//g;
-#		$nombre=~s/\s*\d*\s*//;
-		# print "$nombre\n";
 		my $nombre=most_frequent(@functions);
-#		system("rm $path/salida/name");
 
 		if(int($Taxa)>=$porciento){
-			#busca nombre aun no habilitado
+			my @pegs=split(" ",$st[1]);
+			
 			print SALIDA "$Familia:$nombre:$st[1]\n";#
+			print JASON "\t{\n";
+			print JASON "\t\tfamily:\"$nombre\",\n";#
+			print JASON "\t\tid:\"$Familia\",\n";#
+			print JASON "\t\titems: [\n";#
+			foreach my $peg(@pegs){
+				print JASON "\t\t\t{\n";
+				$peg=~m/(\d*)\.(\d*)\.\w*\.(\d*)/;
+				print JASON "\t\t\trast_id: \"$1.$2\",\n";#
+				print JASON "\t\t\tgen: \"$3\"\n";#
+				print JASON "\t\t\t},\n";
+				
+				}
+			print JASON "\t\t]\n";#
+			print JASON "\t},\n";
 			$count++;
 			## La idea es desplegar una pagina con todos los nombres de las familias
                         ## Y que estos sean hiperlinks
@@ -123,6 +129,8 @@ sub Select_n_families{
 			}	
 #		print "0 $st[0] ->  1 $st[1]\n";
 		}
+	print JASON "}";
+	close JASON;
 	close SALIDA;
 	close FILE;
 	}  
