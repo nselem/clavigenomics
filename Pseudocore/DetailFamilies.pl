@@ -47,6 +47,7 @@ sub readFamilies{
 	my $RAST=shift;
 	open (FILE,"$dir/salida/temp.n_familias") or die "NO pude abrir $dir $!\n";
 	open (OUTPUTFASTA,">$dir/salida/$FamId.fasta") or die "NO pude abrir $dir $!\n";
+	open (OUTPUTFASTA_DNA,">$dir/salida/$FamId.fna") or die "NO pude abrir $dir $!\n";
 		foreach my $line (<FILE>){
 			chomp $line;
 			my @st=split(":",$line);
@@ -85,12 +86,28 @@ sub readFamilies{
 						}
 					$seqio_obj->close();
 
+					my $seqio_obj = Bio::SeqIO->new(-file => "$dir/$genomeId.fna",  -format => "fasta" );
+					while(my $seq=$seqio_obj->next_seq){
+						my $seqid=$seq->id;
+						my $am=$seq->seq();
+						#print "$id mm $seqid\n";
+						if($id eq $seqid){
+							#print $seq->id.'='.$seq->seq()."\n";
+							$seqid=~s/fig\|/$genome\_/;	
+							print OUTPUTFASTA_DNA ">$seqid\n";
+							print OUTPUTFASTA_DNA "$am\n";
+							next;
+							}
+						}
+					$seqio_obj->close();
+
 					}
 				next;				
 				}
 			}
 		close FILE;
 		close OUTPUTFASTA;
+		close OUTPUTFASTA_DNA;
 		}
 
 
