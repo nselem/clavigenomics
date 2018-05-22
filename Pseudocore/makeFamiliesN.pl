@@ -270,11 +270,11 @@ sub CreateFiles{
 				my $blastfilefull="$path/$blastfile";
 				if (! (-e $blastfilefull)){ print "no blastfile $blastfilefull";exit;}
 				$string=$string.$blastfilefull." ";
+				print("cat $blastfilefull >>$path/temp.blast\n");
+				system("cat $blastfilefull >>$path/temp.blast");
 				}
 			}
 		}
-	system("cat $string >temp.blast");
-	print("cat $string >$path/temp.blast\n");
 	close FILE;
 	}
 
