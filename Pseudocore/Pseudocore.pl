@@ -10,13 +10,15 @@ my $file="/usr/src/CLAVIGENOMICS/lista";
 ##output hash key:RastId content Human name
 my %IDS=readFile($file);
 
-
 ## foreach gen on the Reference find its distribution
 ## input a gen number
 ## output A hash of arrays with all the Genome Ids where is present.
 genomeDistribution(\%IDS);
 system("FastTree SalidaConcatenada.txt > Salida.tre");
-system("rm [0-9]*");
+system("rm [0-9]*temp");
+system("rm *gb");
+system("rm *muscle");
+system("rm *pir");
 
 sub genomeDistribution{
 	my $refIDS=shift;
@@ -24,7 +26,7 @@ sub genomeDistribution{
 	my $genomeNumber=keys(%{$refIDS});
 	#print "Total of genomes $genomeNumber\n";
 
-         # creo un aray para cada gen en el reference core
+         # creo un array para cada gen en el reference core
 	for (my $i=1;$i<=558;$i++){
 			$HASH{$i}=();
 			}
@@ -56,14 +58,13 @@ sub genomeDistribution{
 				my $isize=scalar@{$HASH{$i}};
 				if($isize==$genomeNumber){
 				#		print "$i\t$isize\t@{$HASH{$i}}}\n";
-					open(FILE,">$i") or die "Coudnt open $i file $!\n";
+					open(FILE,">$i\.temp") or die "Coudnt open $i file $!\n";
 					foreach my $seq (@{$HASH{$i}}){
 						$seq=~s/\_/\n/;
 						print FILE ">$seq\n";
-				#		my $pause=<STDIN>;
 					}
 					close FILE;
-					system(" muscle -in $i -out $i.muscle.pir -fasta -quiet -group");
+					system(" muscle -in $i\.temp -out $i.muscle.pir -fasta -quiet -group");
 			#		system ("echo SortAlign.pl $i.muscle.pir");
 					system("SortAlign.pl $i.muscle.pir");
 				}
