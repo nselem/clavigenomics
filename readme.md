@@ -1,15 +1,16 @@
 # Clavigenomics
 
 Casi todos los archivos de IDs contienen solo RAST genome ids:  
-> 6666666.1298689
+> 6666666.1298689  
 > 6666666.1298474  
-excepto el de descargar genomas de RAST, ahi es necesario tambien el job id, por requerimiento de myrast.  
-Ejemplo  
-`876438     6666666.138469`
-`358438     2.1140`  
-
-Usuarios por favor tener cuidado de escribir los últimos ceros, 2.1140 en lugar de 2.114 como aveces los trata excel.  
   
+excepto el de descargar genomas de RAST, ahi es necesario tambien el job id, por requerimiento de myrast.  
+Ejemplo   
+> 876438     6666666.138469  
+> 358438     2.1140  
+  
+Usuarios por favor tener cuidado de escribir los últimos ceros, 2.1140 en lugar de 2.114 como aveces los trata excel.  
+   
   
 ### 1 Correr la imagen de docker de modo interactivo  
 `docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS nselem/clavigenomic /bin/bash`
