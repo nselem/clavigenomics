@@ -17,7 +17,10 @@ Usuarios por favor tener cuidado de escribir los últimos ceros, 2.1140 en lugar
 
 ### 2. Introducir un nuevo genoma a la aplicación  
 1. Descargar txt faa fna    
-`docker run -i -t -v $(pwd):/home nselem/myrast getFiles.pl NewIdsFile`  
+`docker run -i -t -v $(pwd):/home nselem/myrast getFiles.pl NewIdsFile user password`  
+NewIdsFile
+> 876438     6666666.138469  
+> 358438     2.1140  
 
 Output ẗxt *faa *fna  
 2. Crear Central  (Pseudocore files)
