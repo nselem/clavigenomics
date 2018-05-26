@@ -1,8 +1,8 @@
 # Clavigenomics
 
 Casi todos los archivos de IDs contienen solo RAST genome ids:  
-`6666666.1298689`
-`6666666.1298474`  
+> 6666666.1298689
+> 6666666.1298474  
 excepto el de descargar genomas de RAST, ahi es necesario tambien el job id, por requerimiento de myrast.  
 Ejemplo  
 `876438     6666666.138469`
