@@ -111,6 +111,8 @@ sub Select_n_families{
 
 	my $filename="$path/salida/temp.end";
 	open (SALIDA,">$path/salida/temp.n_familias") or die " No pude crear $path/salida/temp.n_familias$!\n";
+	open (JASON,">$path/salida/temp.js") or die " No pude crear $path/salida/temp.js$!\n";
+	my $jason="[\n";
 	open (FILE,"$filename") or die "No pude abrir el archivo $filename de fastortho en el directoriio salida\n";	
 	foreach my $line (<FILE>){
 		chomp $line;
@@ -173,7 +175,29 @@ sub Select_n_families{
 		my $nombre=most_frequent(@functions);
 #		system("rm $path/salida/name");
 		if((int($Realporciento)>=$number) and (int($RealporcientoOut)>=$numberOut)){
+			my @pegs=split(" ",$st[1]);
 			print SALIDA "$Familia:$Realporciento:$porciento:$RealporcientoOut:$nombre:$st[1]\n";#
+			$jason=$jason."\t{\n";
+			$nombre=~s/\(//g;
+			$nombre=~s/\)//g;
+			#$nombre=~s/\&//g;
+			$nombre=~s/\"//g;
+			$nombre=~s/\///g;
+			$nombre=~s/\r//g;
+			#$nombre=~s/\;//g;
+			$jason=$jason."\t\t\"family\":\"$nombre\",\n";#
+			$jason=$jason."\t\t\"id\":\"$Familia\",\n";#
+			$jason=$jason."\t\t\"items\": [\n";#
+			foreach my $peg(@pegs){
+				$jason=$jason."\t\t\t{\n";
+				$peg=~m/(\d*)\.(\d*)\.\w*\.(\d*)/;
+				$jason=$jason."\t\t\t\"rast_id\": \"$1.$2\",\n";#
+				$jason=$jason."\t\t\t\"gen\": \"$3\"\n";#
+				$jason=$jason."\t\t\t},\n";
+				}
+			$jason=substr($jason, 0, -2)."\n";
+			$jason=$jason."\t\t]\n";#
+			$jason=$jason."\t},\n";
 			$count++;
 			## La idea es desplegar una pagina con todos los nombres de las familias
                         ## Y que estos sean hiperlinks
@@ -183,6 +207,10 @@ sub Select_n_families{
 			}	
 #		print "0 $st[0] ->  1 $st[1]\n";
 		}
+	$jason=substr($jason, 0, -2)."\n";
+	$jason=$jason."]";
+	print JASON "$jason";
+	close JASON;
 	close SALIDA;
 	close FILE;
 	}  

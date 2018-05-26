@@ -3,17 +3,17 @@ use strict;
 use warnings;
 use Bio::SeqIO;
 
-my $file="/usr/src/CLAVIGENOMICS/lista";
+my $file=$ARGV[0];
 
 #Read lista file
 #input lista
 ##output hash key:RastId content Human name
-my %IDS=readFile($file);
+my @IDS=readFile($file);
 
 ## foreach gen on the Reference find its distribution
 ## input a gen number
 ## output A hash of arrays with all the Genome Ids where is present.
-genomeDistribution(\%IDS);
+genomeDistribution(@IDS);
 system("FastTree SalidaConcatenada.txt > Salida.tre");
 system("rm [0-9]*temp");
 system("rm *gb");
@@ -21,9 +21,9 @@ system("rm *muscle");
 system("rm *pir");
 
 sub genomeDistribution{
-	my $refIDS=shift;
+	my @array=@_;
         my %HASH;	
-	my $genomeNumber=keys(%{$refIDS});
+	my $genomeNumber=@array;
 	#print "Total of genomes $genomeNumber\n";
 
          # creo un array para cada gen en el reference core
@@ -33,8 +33,8 @@ sub genomeDistribution{
 
 	#lleno este array en orden recorriendo todos los genomas  
 	#abrir los archivos de IDS
-	my @keys=(sort keys %{$refIDS});
-	foreach my $key (sort keys %{$refIDS}){ 
+	my @keys=(sort @array);
+	foreach my $key (sort @array){ 
 		my $file=$key.".Central";
 		#print "$file\n";
 		my $seqio_obj = Bio::SeqIO->new(-file => "$file",  -format => "fasta" );
@@ -73,34 +73,18 @@ sub genomeDistribution{
 		print("echo Concatenador.pl @keys");
 		system("Concatenador.pl @keys");
 
-		my $seqio_obj_in = Bio::SeqIO->new(-file => "/usr/src/CLAVIGENOMICS/SalidaConcatenada.txt",  -format => "fasta" );
-		open(FILE,">/usr/src/CLAVIGENOMICS/RightNames.txt") or die "Coudnt open NamesFile file $!\n";
-		while (my $inseq= $seqio_obj_in->next_seq ){
-			my $id= $inseq->display_id;
-			my $seq= $inseq->seq();
-	#		print"Id is #$id#\n";
-			my $new=$refIDS->{$id};
-	#		print"Id is #$new#$seq\n";
-	         	print FILE ">$new\n$seq\n"; 
-			}
-		close FILE;
 }
 ############################
 
 sub readFile{
 	print "Reading genomes list\n...";
 	my $file=shift;
-	my %hash;
+	my @array;
 	open (FILE,$file) or die "Couldnt open file $file \n $!";
 	foreach my $line(<FILE>){
 		chomp $line;
-		my @st=split(/\t/,$line);
-		$st[1]=~s/\;//g;
-		$st[1]=~s/\|//g;
-		$st[1]=~s/ /\_/g;
-		print "$st[0]->$st[1]\n";
-		$hash{$st[0]}=$st[1];
+		push(@array,$line);
 	}
-	return %hash;
+	return @array;
 }
 

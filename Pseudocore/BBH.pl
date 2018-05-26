@@ -11,59 +11,63 @@ no warnings 'experimental::smartmatch';
 my $verbose;
 my $e=0.001;
 my $file1=$ARGV[0]; ## Fasta file with some genes The reference Core
-my $file2=$ARGV[1]; ## Fasta file with others genes where to look for BBH (THe genome)
-print "\nLooking for BBH between $file1 on set $file2\n ";
-# first  blast p from 1vs2
-`makeblastdb -in $file2 -dbtype prot -out $file2\.db`;
-`blastp -db $file2\.db -query /root/clavigenomics/Pseudocore/$file1 -outfmt 6 -evalue $e -num_threads 4 -out $file1\_vs\_$file2`;
-#second blastp 2vs1
-`makeblastdb -in /root/clavigenomics/Pseudocore/$file1 -dbtype prot -out $file1\.db`;
-`blastp -db $file1\.db -query $file2 -outfmt 6 -evalue $e -num_threads 4 -out $file2\_vs\_$file1`;
+my $FIds=$ARGV[1]; ## Fasta file with ids of others genomes where to look for BBH (THe genome)
 
-my $inputblast1vs2="$file1\_vs\_$file2";
-my $outname1="$file1\_vs\_$file2\_BH";
-my %BH1vs2 = (); #Hash de hashes
-my $inputblast2vs1="$file2\_vs\_$file1";
-my $outname2="$file2\_vs\_$file1\_BH";
-my %BH2vs1 = (); #Hash de hashes
-my %BiBestHits;
-my $BBHfile="BBH\_$file1\_$file2";
-print "Blast done\n\n";
+open(FILE2,$FIds) or die "Couldnt open FILE2\n";
+
+foreach my $file2 (<FILE2>){
+	chomp $file2;
+	#print "\nLooking for BBH between #$file1# on set #$file2#\n ";
+	# first  blast p from 1vs2
+	#print("makeblastdb -in $file2\.faa -dbtype prot -out $file2\.db\n");
+	system("makeblastdb -in $file2\.faa -dbtype prot -out $file2\.db");
+	#print("blastp -db $file2\.db -query /root/clavigenomics/Pseudocore/$file1 -outfmt 6 -evalue $e -num_threads 4 -out $file1\_vs\_$file2\n");
+	system("blastp -db $file2\.db -query /root/clavigenomics/Pseudocore/$file1 -outfmt 6 -evalue $e -num_threads 4 -out $file1\_vs\_$file2");
+	#second blastp 2vs1
+	#print("makeblastdb -in /root/clavigenomics/Pseudocore/$file1 -dbtype prot -out $file1\.db\n");
+	system("makeblastdb -in /root/clavigenomics/Pseudocore/$file1 -dbtype prot -out $file1\.db");
+	#print("blastp -db $file1\.db -query $file2\.faa -outfmt 6 -evalue $e -num_threads 4 -out $file2\_vs\_$file1\n");
+	system("blastp -db $file1\.db -query $file2\.faa -outfmt 6 -evalue $e -num_threads 4 -out $file2\_vs\_$file1");
+	my $inputblast1vs2="$file1\_vs\_$file2";
+	my $outname1="$file1\_vs\_$file2\_BH";
+	my %BH1vs2 = (); #Hash de hashes
+	my $inputblast2vs1="$file2\_vs\_$file1";
+	my $outname2="$file2\_vs\_$file1\_BH";
+	my %BH2vs1 = (); #Hash de hashes
+	my %BiBestHits;
+	my $BBHfile="BBH\_$file1\_$file2";
+	#print "Blast done\n\n";
 
 #my @Required=Options(\$verbose,\$inputblast,\$output,\$outname);
 #################################################################################################
 ########################################################
 ## Main
 ## 1 Find Best Hits
-print "\nFinding Hits $file1 ve $file2, takes some minutes, be patient!\n"; 
-&bestHit($outname1,\%BH1vs2,$inputblast1vs2);
-#foreach my $peg (keys %BH1vs2){
-##print " Peg: $peg\n";
-#		print "query $peg, Percentage $BH1vs2{$peg}[0], Hit $BH1vs2{$peg}[1]\n";
-#	}
+	#print "\nFinding Hits $file1 ve $file2, takes some minutes, be patient!\n"; 
+	&bestHit($outname1,\%BH1vs2,$inputblast1vs2);
 
 
-print "\n\nFinding Hits $file2 ve $file1, takes some minutes, be patient!\n"; 
-&bestHit($outname2,\%BH2vs1,$inputblast2vs1);
-#foreach my $peg (keys %BH2vs1){
-#		#print " Peg: $peg\n";
-#		print "query $peg, Percentage $BH2vs1{$peg}[0], Hit $BH2vs1{$peg}[1]\n";
-#	}
+	#print "\n\nFinding Hits $file2 ve $file1, takes some minutes, be patient!\n"; 
+	&bestHit($outname2,\%BH2vs1,$inputblast2vs1);
 
-## 2 Find Bidirectional Best Hits
-#print "##\n BREAK 1\n #####";
-print "\n\nNow finding Best Bidirectional Hits List\n";
-&ListBidirectionalBestHits(\%BiBestHits,\%BH1vs2,\%BH2vs1);
-print "\n\n";
+	## 2 Find Bidirectional Best Hits
+	#print "\n\nNow finding Best Bidirectional Hits List\n";
+	&ListBidirectionalBestHits(\%BiBestHits,\%BH1vs2,\%BH2vs1);
+	#print "\n\n";
 
 ############ ForEvoMining central Code
-my %FASTA;
-readFile($file2,\%FASTA);
+	my %FASTA;
+	readFile($file2,\%FASTA);
+	printEvoFormat(\%BiBestHits,\%FASTA,$file2);
+}
+
+#####################################################A
+############################################################
 
 sub readFile{
 	my $file=shift;
 	my $refFASTA=shift;
-	open (FILE, $file) or die "Unable to open file $!\n";
+	open (FILE, "$file\.faa") or die "Unable to open file  $file.faa $!\n";
 	my $key="";
 	foreach my $line (<FILE>){
 		chomp $line;
@@ -86,15 +90,14 @@ sub readFile{
 #	}
 #exit;
 
-printEvoFormat(\%BiBestHits,\%FASTA,$file2);
 sub printEvoFormat{
 	my $refBBH=shift;
 	my $refFASTA=shift;
-	my $file=shift;
+	my $file2=shift;
 	my $FinalName;
 
 	open (FILE,">$file2\.Central") or die "Unable to open file $!\n";
-	print "Este es >$file2\.Central\n";
+	#print "Este es >$file2\.Central\n";
 	for my $query (sort {$a<=>$b} keys %$refBBH){
 		my $hit=$refBBH->{$query};
 		my $key=">".$hit;
