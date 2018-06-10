@@ -16,10 +16,10 @@ my @IDS=readFile($file);
 # $count=0; #how many sequences are actually on the array
 if (-e "realSequences"){system("rm realSequences");}
 my $Default="558"; #Number of genes on Pseudocore file
-my $count=genomeDistribution($Default,@IDS);
+my ($count,$which)=genomeDistribution($Default,@IDS);
 
 open (FILE ,">realSequences") or die "";
-print FILE "$count\n";
+print FILE "$count\n$which";
 close FILE;
 
 system("FastTree SalidaConcatenada.txt > Salida.tre");
@@ -35,6 +35,7 @@ sub genomeDistribution{
         my %HASH;	
 	my $genomeNumber=@array;
 	my $count=0;
+	my $which="";
 	#print "Total of genomes $genomeNumber\n";
 
          # creo un array para cada gen en el reference core
@@ -69,6 +70,7 @@ sub genomeDistribution{
 				my $isize=scalar@{$HASH{$i}};
 				if($isize==$genomeNumber){
 					$count++;
+					$which.="$i\_";
 				#		print "$i\t$isize\t@{$HASH{$i}}}\n";
 					open(FILE,">$i\.pseudocore") or die "Coudnt open $i file $!\n";
 					foreach my $seq (@{$HASH{$i}}){
@@ -84,7 +86,7 @@ sub genomeDistribution{
 		}
 		print("echo Concatenador.pl @keys");
 		system("Concatenador.pl @keys");
-		return $count;
+		return ($count,$which);
 
 }
 ############################
