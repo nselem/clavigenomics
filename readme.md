@@ -35,7 +35,9 @@ Output *blast
 ## 3. Obtener el Pseudocore  
 -Correr el PseudoCore    
 `docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS nselem/clavigenomic Pseudocore.pl <IdsFile>`  
-Output: Salida.tre  
+Output: Salida.tre  FastTree con los ortologos compartidos concatenados.    
+        realSequences Archivo con el numero de ortologos realmente compartidos de los 558 propuestos.    
+
   
 Para un ejemplo mueve los archivos del folder /root/clavigenomics/example/ a /usr/src/CLAVIGENOMICS
 `cp /root/clavigenomics/example/* .`  
@@ -43,6 +45,11 @@ Para un ejemplo mueve los archivos del folder /root/clavigenomics/example/ a /us
 
 ## 4. Obtener presencia y ausencia hasta cierto porcentaje de familias  
  `cp /root/clavigenomics/exampleFO/* .`        
-`makeFamiliesN.pl /usr/src/CLAVIGENOMICS/ <100> <Presencia> <100> <Ausencia>`
-`DetailFamilies.pl <FamilyID> /usr/src/CLAVIGENOMICS`
+`makeFamiliesN.pl /usr/src/CLAVIGENOMICS/ <100> <Presencia> <100> <Ausencia>`  
+Output:  temp.n_familias.js  
+`DetailFamilies.pl <FamilyID> /usr/src/CLAVIGENOMICS`  
+ORTHOMCL5018.fna   Fasta de nucleotidos  
+ORTHOMCL5018.tre   FastTree de la familia  
+ORTHOMCL5029.fasta Fasta de proteinas  
+
 
