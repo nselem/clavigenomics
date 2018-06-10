@@ -23,17 +23,17 @@ NewIdsFile
 > 358438     2.1140  
 
 Output ẗxt *faa *fna  
-2. Crear Central  (Pseudocore files)
+2. Crear Central  (Pseudocore files)  
 `docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS nselem/clavigenomic BBH.pl 558ParaCORE NewIdsFile`  
 Output *Central
 Note: 558ParaCORE is located in /root/clavigenomics/Pseudocore/558ParaCORE     
   
-3. Crear blast     (Contra todos los genomas)
+3. Crear blast     (Contra todos los genomas)  
 `docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS nselem/clavigenomic blasting.pl NewIdsFile OldIdsFile` 
 Output *blast   
 
 ## 3. Obtener el Pseudocore  
--Correr el PseudoCore  
+-Correr el PseudoCore    
 `docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS nselem/clavigenomic /root/clavigenomics/Pseudocore/Pseudocore.pl IdsFile` 
 Output: Salida.tre  
   
