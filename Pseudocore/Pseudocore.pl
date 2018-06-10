@@ -13,21 +13,32 @@ my @IDS=readFile($file);
 ## foreach gen on the Reference find its distribution
 ## input a gen number
 ## output A hash of arrays with all the Genome Ids where is present.
-genomeDistribution(@IDS);
+# $count=0; #how many sequences are actually on the array
+if (-e "realSequences"){system("rm realSequences");}
+my $Default="558"; #Number of genes on Pseudocore file
+my $count=genomeDistribution($Default,@IDS);
+
+open (FILE ,">realSequences") or die "";
+print FILE "$count\n";
+close FILE;
+
 system("FastTree SalidaConcatenada.txt > Salida.tre");
-system("rm [0-9]*temp");
+system("rm [0-9]*pseudocore");
 system("rm *gb");
 system("rm *muscle");
 system("rm *pir");
 
+############################### Subs###########################################
 sub genomeDistribution{
+	my $default=shift;
 	my @array=@_;
         my %HASH;	
 	my $genomeNumber=@array;
+	my $count=0;
 	#print "Total of genomes $genomeNumber\n";
 
          # creo un array para cada gen en el reference core
-	for (my $i=1;$i<=558;$i++){
+	for (my $i=1;$i<=$default;$i++){
 			$HASH{$i}=();
 			}
 
@@ -51,20 +62,21 @@ sub genomeDistribution{
 	#para cada gen del 1 al 590
  	#Contar el tamaño de su array si es igual que genomeNumber
 	#Ponerlo en la lista de pseudocore
-	for (my $i=1;$i<=558;$i++){
+	for (my $i=1;$i<=$default;$i++){
 #			print "Getting elements on pseudocore\n";
 	#		print "The size of $i is \n";
 			if(-exists $HASH{$i}){
 				my $isize=scalar@{$HASH{$i}};
 				if($isize==$genomeNumber){
+					$count++;
 				#		print "$i\t$isize\t@{$HASH{$i}}}\n";
-					open(FILE,">$i\.temp") or die "Coudnt open $i file $!\n";
+					open(FILE,">$i\.pseudocore") or die "Coudnt open $i file $!\n";
 					foreach my $seq (@{$HASH{$i}}){
 						$seq=~s/\_/\n/;
 						print FILE ">$seq\n";
 					}
 					close FILE;
-					system(" muscle -in $i\.temp -out $i.muscle.pir -fasta -quiet -group");
+					system(" muscle -in $i\.pseudocore -out $i.muscle.pir -fasta -quiet -group");
 			#		system ("echo SortAlign.pl $i.muscle.pir");
 					system("SortAlign.pl $i.muscle.pir");
 				}
@@ -72,6 +84,7 @@ sub genomeDistribution{
 		}
 		print("echo Concatenador.pl @keys");
 		system("Concatenador.pl @keys");
+		return $count;
 
 }
 ############################

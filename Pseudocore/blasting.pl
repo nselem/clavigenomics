@@ -20,13 +20,15 @@ my @oldies;
 my @news;
 
 foreach my $oldie (<OLD>){
-	chomp $oldie;
-	push(@oldies,$oldie);
+	my @st=split(/\t/,$oldie);
+	chomp $st[1];
+	push(@oldies,$st[1]);
 	}
 
 foreach my $newbie (<NEW>){
-	chomp $newbie;
-	push (@news,$newbie);
+	my @st=split(/\t/,$newbie);
+	chomp $st[1];
+	push (@news,$st[1]);
 	}
 close OLD; close NEW;
 
@@ -50,4 +52,5 @@ foreach my $newbie (@news) {
 			}
 		}
 	}
+system("rm *phr *pin *psq");
 #__________________________________________________________________________________________________
