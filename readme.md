@@ -1,10 +1,10 @@
 # Clavigenomics
 
-Casi todos los archivos de IDs contienen solo RAST genome ids:  
+A partir de la seccion 3 todos los archivos de IDs contienen solo el RAST genome id:  
 > 6666666.1298689  
 > 6666666.1298474  
   
-excepto el de descargar genomas de RAST, ahi es necesario tambien el job id, por requerimiento de myrast.  
+El archivo de Ids seccion 1, descargar genomas de RAST y precalcular blast necesita tambien el job id, por requerimiento de myrast.  
 Ejemplo   
 > 876438     6666666.138469  
 > 358438     2.1140  
@@ -34,7 +34,7 @@ Output *blast
 
 ## 3. Obtener el Pseudocore  
 -Correr el PseudoCore    
-`docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS nselem/clavigenomic /root/clavigenomics/Pseudocore/Pseudocore.pl IdsFile` 
+`docker run -i -t -v $(pwd):/usr/src/CLAVIGENOMICS nselem/clavigenomic Pseudocore.pl IdsFile` 
 Output: Salida.tre  
   
 Para un ejemplo mueve los archivos del folder /root/clavigenomics/example/ a /usr/src/CLAVIGENOMICS
