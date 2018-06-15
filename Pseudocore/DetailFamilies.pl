@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perr
 use strict;
 use warnings;
 use Bio::SeqIO;

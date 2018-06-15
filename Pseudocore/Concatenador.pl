@@ -252,7 +252,7 @@ my $refkeys=shift;
 my $refHASH=shift;
 
 
-my $EscribirSalida="SalidaConcatenada.txt";
+my $EscribirSalida="SalidaConcatenada.con";
 
 if($outputfile){$EscribirSalida=$outputfile;}
 

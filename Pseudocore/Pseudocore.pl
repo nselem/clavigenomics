@@ -22,7 +22,7 @@ open (FILE ,">realSequences") or die "";
 print FILE "$count\n$which";
 close FILE;
 
-system("FastTree SalidaConcatenada.txt > Salida.tre");
+system("FastTree SalidaConcatenada.con > Salida.tre");
 system("rm [0-9]*pseudocore");
 system("rm *gb");
 system("rm *muscle");
