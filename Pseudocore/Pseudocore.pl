@@ -27,7 +27,7 @@ system("rm [0-9]*pseudocore");
 system("rm *gb");
 system("rm *muscle");
 system("rm *pir");
-#system("rm *Central");
+system("rm *Central");
 #
 ############################### Subs###########################################
 sub genomeDistribution{
