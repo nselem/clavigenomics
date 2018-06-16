@@ -27,7 +27,8 @@ system("rm [0-9]*pseudocore");
 system("rm *gb");
 system("rm *muscle");
 system("rm *pir");
-
+#system("rm *Central");
+#
 ############################### Subs###########################################
 sub genomeDistribution{
 	my $default=shift;
@@ -39,9 +40,9 @@ sub genomeDistribution{
 	#print "Total of genomes $genomeNumber\n";
 
          # creo un array para cada gen en el reference core
-	for (my $i=1;$i<=$default;$i++){
-			$HASH{$i}=();
-			}
+	#for (my $i=1;$i<=$default;$i++){
+			#$HASH{$i}=();
+	#		}
 
 	#lleno este array en orden recorriendo todos los genomas  
 	#abrir los archivos de IDS
@@ -55,6 +56,7 @@ sub genomeDistribution{
 			my $seq= $seq_object->seq;
 			my @st=split(/_/,$id);
 			#print "$st[0]\n";
+			if ( ! exists $HASH{$st[0]}){$HASH{$st[0]}=()};
 			push(@{$HASH{$st[0]}},"$key\_$seq");
 	        	#	print "$key,->$HASH{$st[0]}\n";
 			}
@@ -66,7 +68,9 @@ sub genomeDistribution{
 	for (my $i=1;$i<=$default;$i++){
 #			print "Getting elements on pseudocore\n";
 	#		print "The size of $i is \n";
-			if(-exists $HASH{$i}){
+			if(exists $HASH{$i}){
+			#	print "i is $i";
+			#	my $pause=<STDIN>;
 				my $isize=scalar@{$HASH{$i}};
 				if($isize==$genomeNumber){
 					$count++;
