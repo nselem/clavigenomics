@@ -16,6 +16,7 @@ use warnings;
 # perl makeFamiliesN.pl /input/dir n empty 100 file2
 
 #######################3 Read variables
+#if(-e [0-9]*){system("rm [0-9]*");}
 my $path="/usr/src/CLAVIGENOMICS";
 my $inputdir=shift @ARGV;
 my $number=shift @ARGV; ## percentage of organism where family must be shared
@@ -36,7 +37,6 @@ system("FastOrtho --option_file options.file");
 my %FunctionalHash=ReadFunction($path,\@RastIds,\@RastIdsOut);
 Select_n_families($number,$path,\%FunctionalHash,\@RastIds,$numberOut,\@RastIdsOut);
 system("rm *blast");
-system("rm [0-9]*");
 
 ###################3 Subs ###################################
 sub fillIds{
