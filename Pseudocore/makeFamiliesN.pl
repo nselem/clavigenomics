@@ -210,9 +210,17 @@ sub Select_n_families{
 #		print "0 $st[0] ->  1 $st[1]\n";
 		}
 	$jason=substr($jason, 0, -2)."\n";
-	$jason=$jason."]";
-	print JASON "$jason";
-	close JASON;
+	my $test=$jason;
+	chomp $test;
+	if($test ne ""){
+		$jason=$jason."]";
+		print JASON "$jason";
+		close JASON;
+		}
+	else{
+		close JASON;
+		system("rm $path/salida/temp.js");
+		}
 	close SALIDA;
 	close FILE;
 	}  
