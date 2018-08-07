@@ -3,11 +3,11 @@
 Clavigenomics es el repositorio del backend de la aplicación de genómica bacteriana comparativa Clavisual.  
 ![Clavisual](Figuras/clavisual.png)  
 
-Clavigenomics está empacado en un contenedor de docker y a través de Clavisual provee las siguientes funcionalidades.  
+Clavigenomics está empacado en un contenedor de docker y a través de Clavisual provee las siguientes funcionalidades:    
 -Calculo de genes comunes en bacterias relacionadas al tomate.  
--Visualizacin de árboles filogenéticos con metadatos. 
+-Visualizacin de árboles filogenéticos con metadatos.  
 -Cálculo de marcadores de gruops selectos de bacterias relacionadas al tomate.  
-
+  
 Aquí se muestra un ejemplo de reconstrucción filogenética visualizada con metadatos y contruida con la matriz de genes conservados.  
 ![Clavisual](Figuras/tree.png)  
 
