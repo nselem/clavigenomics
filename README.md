@@ -14,7 +14,7 @@ Aquí se muestra un ejemplo de reconstrucción filogenética visualizada con met
 Esta es la interfaz de usuario para el cálculo de grupos de genes marcadores.  
 ![Clavisual](Figuras/markers.png)  
 
-## Instrucciones  
+## Funcionamiento en clavisual   
 A partir de la sección 3 de este documento todos los archivos de IDs contienen solo el RAST genome id:  
 > 6666666.1298689  
 > 6666666.1298474  
