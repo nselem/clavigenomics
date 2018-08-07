@@ -8,7 +8,7 @@ Clavigenomics está empacado en un contenedor de docker y a través de Clavisual
 -Visualizacin de árboles filogenéticos con metadatos.  
 -Cálculo de marcadores de gruops selectos de bacterias relacionadas al tomate.  
   
-Aquí se muestra un ejemplo de reconstrucción filogenética visualizada con metadatos y contruida con la matriz de genes conservados.  
+Aquí se muestra un ejemplo de reconstrucción filogenética visualizada con metadatos y construida con la matriz de genes conservados.  
 ![Clavisual](Figuras/tree.png)  
 
 Esta es la interfaz de usuario para el cálculo de grupos de genes marcadores.  
