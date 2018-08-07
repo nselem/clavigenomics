@@ -1,6 +1,21 @@
 # Clavigenomics
 
-A partir de la sección 3 todos los archivos de IDs contienen solo el RAST genome id:  
+Clavigenomics es el repositorio del backend de la aplicación de genómica bacteriana comparativa Clavisual.  
+![Clavisual](Figuras/clavisual.png)  
+
+Clavigenomics está empacado en un contenedor de docker y a través de Clavisual provee las siguientes funcionalidades.  
+-Calculo de genes comunes en bacterias relacionadas al tomate.  
+-Visualizacin de árboles filogenéticos con metadatos. 
+-Cálculo de marcadores de gruops selectos de bacterias relacionadas al tomate.  
+
+Aquí se muestra un ejemplo de reconstrucción filogenética visualizada con metadatos y contruida con la matriz de genes conservados.  
+![Clavisual](Figuras/tree.png)  
+
+Esta es la interfaz de usuario para el cálculo de grupos de genes marcadores.  
+![Clavisual](Figuras/markers.png)  
+
+## Instrucciones  
+A partir de la sección 3 de este documento todos los archivos de IDs contienen solo el RAST genome id:  
 > 6666666.1298689  
 > 6666666.1298474  
   
