@@ -36,6 +36,7 @@ CreateFiles($path,\@RastIds,\@RastIdsOut);
 system("FastOrtho --option_file options.file");
 my %FunctionalHash=ReadFunction($path,\@RastIds,\@RastIdsOut);
 Select_n_families($number,$path,\%FunctionalHash,\@RastIds,$numberOut,\@RastIdsOut);
+system("mv $path/salida /usr/src/RESULTS");
 system("rm *blast");
 
 ###################3 Subs ###################################

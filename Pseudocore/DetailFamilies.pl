@@ -13,24 +13,26 @@ use Bio::SeqIO;
 #######################3 Read variables
 
 my $FamId=shift @ARGV; # Example ORTHOMCL2243
-my $dir=shift @ARGV;   # Output file
+my $dir=shift @ARGV;   # fna faa txt files Output file
+my $dirsalida=shift @ARGV;   # fna faa txt files Output file
 #my $rast=shift @ARGV;   # RastIds File
 
 #print "Fam $FamId\n";
 #print "file $dir\n";
-readFamilies($dir,$FamId); ## Read family ids and then opens fasta file, extract sequences and write a family fasta file
-system("muscle -in $dir/salida/$FamId.fasta -out $dir/salida/$FamId.fasta.muscle.pir -fasta -quiet -group");
-system "Gblocks $dir/salida/$FamId.fasta.muscle.pir -b4=5 -b5=n -b3=5";
-system("FastTree $dir/salida/$FamId.fasta.muscle.pir-gb > $dir/salida/$FamId.tre");
+readFamilies($dir,$FamId,$dirsalida); ## Read family ids and then opens fasta file, extract sequences and write a family fasta file
+system("muscle -in $dirsalida/salida/$FamId.fasta -out $dirsalida/salida/$FamId.fasta.muscle.pir -fasta -quiet -group");
+system "Gblocks $dirsalida/salida/$FamId.fasta.muscle.pir -b4=5 -b5=n -b3=5";
+system("FastTree $dirsalida/salida/$FamId.fasta.muscle.pir-gb > $dirsalida/salida/$FamId.tre");
 
 ############### subs ###############################
 #------------------------------------
 sub readFamilies{
 	my $dir=shift;
 	my $FamId=shift;
-	open (FILE,"$dir/salida/temp.n_familias") or die "NO pude abrir $dir $!\n";
-	open (OUTPUTFASTA,">$dir/salida/$FamId.fasta") or die "NO pude abrir $dir $!\n";
-	open (OUTPUTFASTA_DNA,">$dir/salida/$FamId.fna") or die "NO pude abrir $dir $!\n";
+	my $dirsalida=shift;
+	open (FILE,"$dirsalida/salida/temp.n_familias") or die "NO pude abrir $dir $!\n";
+	open (OUTPUTFASTA,">$dirsalida/salida/$FamId.fasta") or die "NO pude abrir $dir $!\n";
+	open (OUTPUTFASTA_DNA,">$dirsalida/salida/$FamId.fna") or die "NO pude abrir $dir $!\n";
 		foreach my $line (<FILE>){
 			chomp $line;
 			my @st=split(":",$line);
