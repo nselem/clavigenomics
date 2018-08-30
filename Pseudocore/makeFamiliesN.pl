@@ -32,14 +32,51 @@ fillIds($fileIdsOut,\@RastIdsOut);
 ### Revisando inputs  
 ################################################################################
 ViewInputs($number,\@RastIds,$numberOut,\@RastIdsOut);
-CreateFiles($path,\@RastIds,\@RastIdsOut);
-system("FastOrtho --option_file options.file");
+#CreateFiles($path,\@RastIds,\@RastIdsOut);
+#system("FastOrtho --option_file options.file");
 my %FunctionalHash=ReadFunction($path,\@RastIds,\@RastIdsOut);
 Select_n_families($number,$path,\%FunctionalHash,\@RastIds,$numberOut,\@RastIdsOut);
-system("mv $path/salida /usr/src/RESULTS");
+gradiente($number,$path,\%FunctionalHash,\@RastIds,$numberOut,\@RastIdsOut);
+system ("rm /usr/src/RESULTS/salida/*");
+system("mv $path/salida/* /usr/src/RESULTS/salida/.");
 #system("rm *blast");
 
 ###################3 Subs ###################################
+sub gradiente{
+	my $number=shift;
+	my $path=shift;
+	my $FunctionalHash=shift;
+	my $RastIds=shift;
+	my $numberOut=shift;
+	my $RastIdsOut=shift;
+	## if wc temp.n_familis ==0 repetir selec_n families con number (presencia menor) misma ausencia e imprimir un archivo de GRADIENTE
+	my $Encontradas= `wc -l < /usr/src/CLAVIGENOMICS/salida/temp.n_familias`;
+	print "Encontradas $Encontradas\n";
+	my $gradient=$number;
+	my $Deseadas=0;
+
+
+	while ($Encontradas <= $Deseadas){
+		$gradient=$gradient-10;
+		if($gradient>0){
+			Select_n_families($gradient,$path,$FunctionalHash,$RastIds,$numberOut,$RastIdsOut);
+			$Encontradas= `wc -l < /usr/src/CLAVIGENOMICS/salida/temp.n_familias`;
+			print "Presencia\t$gradient\nAusencia\t$numberOut\nEncontradas\t$Encontradas\n";
+
+			}
+		else{
+			$Encontradas=1;
+			}
+		}
+			print "Pausa\n";
+			my $pause=<STDIN>;
+	if (-e "/usr/src/CLAVIGENOMICS/salida/gradiente"){system("rm /usr/src/CLAVIGENOMICS/salida/gradiente");} ## reportar si tuvo que hacer gradiente
+	open (GRADIENTE,">/usr/src/CLAVIGENOMICS/salida/gradiente");
+	print "Presencia\t$gradient\nAusencia\n$numberOut\tEncontradas\n$Encontradas\n";
+	close GRADIENTE;
+
+	}
+#----------------------------------------------------------------------------------------------------------
 sub fillIds{
 	my $fileIds=shift;
 	my $refRastIds=shift;
@@ -53,12 +90,38 @@ sub fillIds{
 }
 #____________________________________________________________________
 
-sub most_frequent
-{
-  local *_=*_;
-  $_[$_{$_}] = $_ for map{$_{$_}++; $_} @_;
-  $_[-1];
-}
+sub most_frequent{
+	my @items=@_;
+	my %count;
+
+
+	@items = grep defined, @items;
+
+
+	foreach my $item (@items){
+	#	print "Item $item\n";
+		if (exists $count{$item}){
+			$count{$item}++;
+			}
+		else{
+			$count{$item}=1;
+			}
+		}
+	#$count{$_}++ for @items;
+	#foreach my $item (@items){print "item $item\n";}
+	# presuming at least one item in @items:
+	my ($winner, $winner_count) = each %count;
+	while (my ($maybe, $maybe_count) = each %count) {
+		#print "Maybe $maybe $maybe_count\n";
+		#print "Winer $winner $winner_count\n";
+  		if ($maybe_count > $winner_count) {
+    			$winner = $maybe;
+    			$winner_count = $maybe_count;
+  			}
+		}
+	return $winner;
+
+	}
 
 #______________________________________________________________________________________
 sub ReadFunction{
@@ -117,7 +180,8 @@ sub Select_n_families{
 	open (JASON,">$path/salida/temp.js") or die " No pude crear $path/salida/temp.js$!\n";
 	my $jason="[\n";
 	open (FILE,"$filename") or die "No pude abrir el archivo $filename de fastortho en el directoriio salida\n";	
-	foreach my $line (<FILE>){
+
+	foreach my $line (<FILE>){  ##Analizamos cada linea(familia) para ver que porcentaje tiene de los deseados y el porcentaje de ausencia de los no deseados
 		chomp $line;
 		my @Organisms;
 		my @st=split("\t",$line);
@@ -128,8 +192,8 @@ sub Select_n_families{
                 my @ids=split(" ",$st[1]);	
 		my @functions;
 		foreach my $id(@ids){
-			$id=~s/(fig\|)(\d*\.\d*)(\.\w*\.\d*)\(\d*\.\d*\)/$1$2$3/;	
-			my $org=$2;
+			$id=~s/(fig\|)(\d*\.\d*)(\.\w*\.\d*)\(\d*\.\d*\)/$1$2$3/;	## Que algo asi como fig|666.34536.peg.407 (Ejemplo)
+			my $org=$2;     #org seria por ejemplo 666.34536
 			#print "$org - $id\n";
 			#my $pause=<STDIN>;
 			my $func=$FuncHash->{$id};
@@ -137,7 +201,7 @@ sub Select_n_families{
 			push(@Organisms,$org);
 		#	print TEMP "$func\n";
 			}
-			my @unique = do { my %seen; grep { !$seen{$_}++ } @Organisms };
+			my @unique = do { my %seen; grep { !$seen{$_}++ } @Organisms }; #Hash de organismos no repetidos
 			my $bool=1;
 
 			my %union; my %isect; my %unionOUT; my %isectOUT;
@@ -174,8 +238,9 @@ sub Select_n_families{
 			}
 
 		#print "Present on $Realporciento absent on $RealporcientoOut\n" ;
-
+		#foreach my $func (@functions){print "Funcion $func\n";}
 		my $nombre=most_frequent(@functions);
+		#print "name $nombre\n";
 #		system("rm $path/salida/name");
 		if((int($Realporciento)>=$number) and (int($RealporcientoOut)>=$numberOut)){
 			my @pegs=split(" ",$st[1]);
