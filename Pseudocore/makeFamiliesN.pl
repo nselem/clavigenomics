@@ -72,7 +72,7 @@ sub gradiente{
 			my $pause=<STDIN>;
 	if (-e "/usr/src/CLAVIGENOMICS/salida/gradiente"){system("rm /usr/src/CLAVIGENOMICS/salida/gradiente");} ## reportar si tuvo que hacer gradiente
 	open (GRADIENTE,">/usr/src/CLAVIGENOMICS/salida/gradiente");
-	print "Presencia\t$gradient\nAusencia\n$numberOut\tEncontradas\n$Encontradas\n";
+	print GRADIENTE "Presencia\t$gradient\nAusencia\n$numberOut\tEncontradas\n$Encontradas\n";
 	close GRADIENTE;
 
 	}
