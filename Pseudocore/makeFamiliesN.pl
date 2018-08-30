@@ -32,8 +32,8 @@ fillIds($fileIdsOut,\@RastIdsOut);
 ### Revisando inputs  
 ################################################################################
 ViewInputs($number,\@RastIds,$numberOut,\@RastIdsOut);
-#CreateFiles($path,\@RastIds,\@RastIdsOut);
-#system("FastOrtho --option_file options.file");
+CreateFiles($path,\@RastIds,\@RastIdsOut);
+system("FastOrtho --option_file options.file");
 my %FunctionalHash=ReadFunction($path,\@RastIds,\@RastIdsOut);
 Select_n_families($number,$path,\%FunctionalHash,\@RastIds,$numberOut,\@RastIdsOut);
 gradiente($number,$path,\%FunctionalHash,\@RastIds,$numberOut,\@RastIdsOut);
